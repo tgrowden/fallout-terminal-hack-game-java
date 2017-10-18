@@ -15,7 +15,7 @@ class FalloutTerminalHackGame {
 				if (game.remainingGuesses == 0) { // Whoops, we're out of guesses. Repeat on the same difficulty
 					System.out.printf("\nfailure... The solution was %s\n", game.solution);
 					game = new Game(params[0], params[1]);
-				} else if (game.isLucky && !game.wasReset()) { // Handling of a "lucky" guess; let's do this one again...
+				} else if (game.isLucky && game.wasReset() == false) { // Handling of a "lucky" guess; let's do this one again...
 					System.out.println("\nLucky guess! Let's try this difficulty again...\n");
 					game = new Game(params[0], params[1]);
 				}

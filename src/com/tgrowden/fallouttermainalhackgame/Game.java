@@ -263,7 +263,7 @@ class Game {
 				guessed.guessed = true;
 
 				if (guessed.text.equals(this.solution)) {
-					if (this.initialGuesses == this.remainingGuesses) {
+					if (this.initialGuesses == this.remainingGuesses && !this.hasBeenReset) {
 						this.isLucky = true;
 					} else {
 						this.solved = true;
