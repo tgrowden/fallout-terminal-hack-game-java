@@ -14,6 +14,8 @@ class Game {
 	 */
 	int remainingGuesses;
 
+	Boolean isLucky;
+
 	/**
 	 * The initial number of guesses allowed
 	 */
@@ -36,6 +38,8 @@ class Game {
 	 */
 	private int wordLength;
 
+	private int wordListLength;
+
 	/**
 	 * The solution to the game
 	 */
@@ -47,8 +51,8 @@ class Game {
  	 * @param wordLength The word length for the instance of Game
 	 *
 	 */
-	Game(int wordLength) {
-		this(wordLength, 4);
+	Game(int wordLength, int wordListLength) {
+		this(wordLength, wordListLength, 4);
 	}
 
 	/**
@@ -56,32 +60,31 @@ class Game {
 	 * @param wordLength The word length for the instance of Game
 	 * @param allowedGuesses The number of guesses allowed
 	 */
-	Game(int wordLength, int allowedGuesses) {
+	Game(int wordLength, int wordListLength, int allowedGuesses) {
 		this.randomGenerator = new Random();
 		this.wordLength = wordLength;
+		this.wordListLength = wordListLength;
 		this.solved = false;
 		this.remainingGuesses = allowedGuesses;
 		this.initialGuesses = this.remainingGuesses;
+		this.isLucky = false;
 		this.setup();
 	}
 
 	/**
 	 * Sets up the game by creation a list of options and the answer
-	 * @todo Add logic to handle max commonality?
 	 */
 	private void setup() {
 		ArrayList<String> possibleOptions = this.getPossibleOptions();
 		this.setSolution(this.getRandomOption(possibleOptions));
 
 		ArrayList<Guess> res = new ArrayList<>();
-		// int maxCommonality = 0;
 		do {
 			String word = this.getRandomOption(possibleOptions);
 			int commonality = this.findCommonCharacters(this.solution, word.toUpperCase());
 			res.add(new Guess(word, commonality));
-			// maxCommonality = commonality > maxCommonality ? commonality : maxCommonality;
 		} while (
-			res.size() < this.wordLength + 6
+			res.size() < this.wordListLength
 		);
 		res.add(new Guess(this.solution, this.solution.length()));
 
@@ -251,7 +254,11 @@ class Game {
 				guessed.guessed = true;
 
 				if (guessed.text.equals(this.solution)) {
-					this.solved = true;
+					if (this.initialGuesses == this.remainingGuesses) {
+						this.isLucky = true;
+					} else {
+						this.solved = true;
+					}
 				} else {
 					this.remainingGuesses--;
 				}
