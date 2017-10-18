@@ -155,14 +155,11 @@ class Game {
 	}
 
 	/**
-	 *
-	 * @return
+	 * @return String The absolute path to the wordlist text file
 	 */
 	private String getWordlistPath() {
 		File file = new File(Game.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 		String wordlistPath = file.getParentFile().getParentFile().getParentFile().getParent() + "/wordlist.txt";
-
-		System.out.println(wordlistPath);
 
 		return wordlistPath;
 	}
