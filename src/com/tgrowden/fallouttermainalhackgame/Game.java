@@ -215,6 +215,17 @@ class Game {
 		}
 		System.out.println(" r)  reset");
 		System.out.println(" q)  quit");
+		if (this.allowsHint()) {
+			System.out.println(" h)  hint");
+		}
+	}
+
+	/**
+	 * Determine whether or not a "hint" option is allowed
+	 * @return
+	 */
+	private Boolean allowsHint() {
+		return this.remainingGuesses < this.initialGuesses;
 	}
 
 	/**
@@ -228,6 +239,8 @@ class Game {
 		} else if (guess.toLowerCase().equals("q")) {
 			System.out.println("Exiting...");
 			System.exit(0);
+		} else if (this.allowsHint() && guess.toLowerCase().equals("h")) {
+			this.displayHint();
 		} else {
 			ArrayList<Guess> filtered = new ArrayList<>();
 			for (Guess g : this.options) {
@@ -250,6 +263,14 @@ class Game {
 				System.out.println("\nNot a valid guess...\n");
 			}
 		}
+	}
+
+	/**
+	 * Display a hint
+	 * @todo Handle this logic
+	 */
+	private void displayHint() {
+		System.out.println("This has not been implemented yet...");
 	}
 
 	/**
