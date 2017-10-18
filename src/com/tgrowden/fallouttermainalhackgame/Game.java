@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-import java.util.HashSet;
 import java.util.Collections;
 import java.util.Arrays;
 
@@ -117,17 +116,14 @@ class Game {
 	 * @return int The number of common characters between `s1` and `s2`
 	 */
 	private int findCommonCharacters(String s1, String s2) {
-		HashSet<Character> h1 = new HashSet<>(), h2 = new HashSet<>();
-		for (int i = 0; i < s1.length(); i++) {
-			h1.add(s1.charAt(i));
+		int count = 0;
+		for(int i = 0; i < s1.length() && i < s2.length(); i++) {
+			if(s1.charAt(i) == s2.charAt(i)){
+				count++;
+			}
 		}
-		for(int i = 0; i < s2.length(); i++) {
-			h2.add(s2.charAt(i));
-		}
-		h1.retainAll(h2);
-		Character[] res = h1.toArray(new Character[0]);
 
-		return res.length;
+		return count;
 	}
 
 	/**
