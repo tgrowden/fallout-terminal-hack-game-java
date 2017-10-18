@@ -38,6 +38,14 @@ class Game {
 	 */
 	private int wordLength;
 
+	/**
+	 * Whether or not the guesses have been reset
+	 */
+	private Boolean hasBeenReset;
+
+	/**
+	 * The length of the word list
+	 */
 	private int wordListLength;
 
 	/**
@@ -68,6 +76,7 @@ class Game {
 		this.remainingGuesses = allowedGuesses;
 		this.initialGuesses = this.remainingGuesses;
 		this.isLucky = false;
+		this.hasBeenReset = false;
 		this.setup();
 	}
 
@@ -281,5 +290,10 @@ class Game {
 	 */
 	private void resetGuesses() {
 		this.remainingGuesses = this.initialGuesses;
+		this.hasBeenReset = true;
+	}
+
+	public Boolean wasReset() {
+		return this.hasBeenReset;
 	}
 }
