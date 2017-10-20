@@ -9,15 +9,15 @@ class FalloutTerminalHackGame {
 		Game game;
 		String userGuess;
 		for (int i = 0; i <= 7; i++) {
-			int[] params = FalloutTerminalHackGame.getParamsForAttempt(i);
-			game = new Game(params[0], params[1]);
+			GameParams params = FalloutTerminalHackGame.getParamsForAttempt(i);
+			game = new Game(params);
 			while (!game.solved) {
 				if (game.remainingGuesses == 0) { // Whoops, we're out of guesses. Repeat on the same difficulty
 					System.out.printf("\nfailure... The solution was %s\n", game.solution);
-					game = new Game(params[0], params[1]);
+					game = new Game(params);
 				} else if (game.isLucky && game.wasReset() == false) { // Handling of a "lucky" guess; let's do this one again...
 					System.out.println("\nLucky guess! Let's try this difficulty again...\n");
-					game = new Game(params[0], params[1]);
+					game = new Game(params);
 				}
 				game.displayOptions();
 				if (game.remainingGuesses > 1) {
@@ -37,7 +37,7 @@ class FalloutTerminalHackGame {
 	 * @param attempt The attempt number
 	 * @return
 	 */
-	public static int[] getParamsForAttempt(int attempt) {
+	public static GameParams getParamsForAttempt(int attempt) {
 		int wordLength, wordListLength;
 		switch (attempt) {
 			case 0:
@@ -77,7 +77,7 @@ class FalloutTerminalHackGame {
 				wordListLength = 0;
 		}
 
-		int res[] = { wordLength, wordListLength };
+		GameParams res = new GameParams(wordLength, wordListLength);
 
 		return res;
 	}
