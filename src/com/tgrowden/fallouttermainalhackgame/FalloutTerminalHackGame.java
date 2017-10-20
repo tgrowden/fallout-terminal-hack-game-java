@@ -2,7 +2,13 @@ package com.tgrowden.fallouttermainalhackgame;
 
 import java.util.Scanner;
 
+/**
+ * Class used for starting a Game loop
+ */
 class FalloutTerminalHackGame {
+	/**
+	 * Main class. Starts the Game loop
+	 */
 	public static void main(String[] args) {
 		System.out.println("Starting...");
 		Scanner scan = new Scanner(System.in);
