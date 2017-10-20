@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.Collections;
 import java.util.Arrays;
+import com.tgrowden.fallouttermainalhackgame.GameParams;
 
 class Game {
 	/**
@@ -14,6 +15,9 @@ class Game {
 	 */
 	int remainingGuesses;
 
+	/**
+	 * Whether or not the instance of Game is considered "lucky" (i.e. guesses correctly on first attempt)
+	 */
 	Boolean isLucky;
 
 	/**
@@ -53,27 +57,16 @@ class Game {
 	 */
 	String solution;
 
-
 	/**
 	 * Creates an instance of Game
- 	 * @param wordLength The word length for the instance of Game
-	 *
+	 * @param gameParams The Game Params
 	 */
-	Game(int wordLength, int wordListLength) {
-		this(wordLength, wordListLength, 4);
-	}
-
-	/**
-	 * Creates an instance of Game
-	 * @param wordLength The word length for the instance of Game
-	 * @param allowedGuesses The number of guesses allowed
-	 */
-	Game(int wordLength, int wordListLength, int allowedGuesses) {
+	Game(GameParams gameParams) {
 		this.randomGenerator = new Random();
-		this.wordLength = wordLength;
-		this.wordListLength = wordListLength;
+		this.wordLength = gameParams.getWordLength();
+		this.wordListLength = gameParams.getWordListLength();
 		this.solved = false;
-		this.remainingGuesses = allowedGuesses;
+		this.remainingGuesses = gameParams.getAllowedGuesses();
 		this.initialGuesses = this.remainingGuesses;
 		this.isLucky = false;
 		this.hasBeenReset = false;
