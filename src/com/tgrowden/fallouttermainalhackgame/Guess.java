@@ -1,10 +1,19 @@
 package com.tgrowden.fallouttermainalhackgame;
 
 class Guess {
+	/**
+	 * The text (i.e. the option)
+	 */
 	public String text;
 
+	/**
+	 * Whether or not this has been guessed
+	 */
 	public Boolean guessed;
 
+	/**
+	 * The number of characters in common with the solution
+	 */
 	public int commonChars;
 
 	/**

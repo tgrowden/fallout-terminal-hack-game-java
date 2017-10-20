@@ -3,12 +3,14 @@ package com.tgrowden.fallouttermainalhackgame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Random;
-import java.util.Collections;
 import java.util.Arrays;
-import com.tgrowden.fallouttermainalhackgame.GameParams;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
 
+/**
+ * The Game class
+ */
 class Game {
 	/**
 	 * The remaining guesses
