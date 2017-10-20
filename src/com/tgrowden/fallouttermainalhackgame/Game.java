@@ -228,7 +228,8 @@ class Game {
 	 * @return
 	 */
 	private Boolean allowsHint() {
-		return this.remainingGuesses < this.initialGuesses;
+		return false;
+		// return this.remainingGuesses < this.initialGuesses;
 	}
 
 	/**
