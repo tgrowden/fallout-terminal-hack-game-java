@@ -1,11 +1,6 @@
-package com.tgrowden.fallouttermainalhackgame;
-
 import java.util.Scanner;
 
-/**
- * Class used for starting a Game loop
- */
-class FalloutTerminalHackGame {
+public class Main {
 	/**
 	 * Main class. Starts the Game loop
 	 */
@@ -15,7 +10,7 @@ class FalloutTerminalHackGame {
 		Game game;
 		String userGuess;
 		for (int i = 0; i <= 7; i++) {
-			GameParams params = FalloutTerminalHackGame.getParamsForAttempt(i);
+			GameParams params = Main.getParamsForAttempt(i);
 			game = new Game(params);
 			while (!game.solved) {
 				if (game.remainingGuesses == 0) { // Whoops, we're out of guesses. Repeat on the same difficulty
@@ -31,7 +26,7 @@ class FalloutTerminalHackGame {
 				} else {
 					System.out.print("Last try: ");
 				}
-				userGuess = scan.next();
+				userGuess = scan.nextLine();
 				game.attempt(userGuess);
 			}
 			System.out.printf("\nsuccess! The answer was %s\n", game.solution);

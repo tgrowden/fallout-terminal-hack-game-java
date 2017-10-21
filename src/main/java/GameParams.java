@@ -1,5 +1,3 @@
-package com.tgrowden.fallouttermainalhackgame;
-
 public class GameParams {
 	/**
 	 * The word length

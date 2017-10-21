@@ -1,6 +1,4 @@
-package com.tgrowden.fallouttermainalhackgame;
-
-class Guess {
+public class Guess {
 	/**
 	 * The text (i.e. the option)
 	 */

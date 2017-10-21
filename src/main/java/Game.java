@@ -1,5 +1,3 @@
-package com.tgrowden.fallouttermainalhackgame;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -8,10 +6,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * The Game class
- */
-class Game {
+public class Game {
 	/**
 	 * The remaining guesses
 	 */
@@ -88,8 +83,8 @@ class Game {
 			int commonality = this.findCommonCharacters(this.solution, word.toUpperCase());
 			res.add(new Guess(word, commonality));
 		} while (
-			res.size() < this.wordListLength
-		);
+				res.size() < this.wordListLength
+				);
 		res.add(new Guess(this.solution, this.solution.length()));
 
 		Collections.shuffle(res);
@@ -162,7 +157,7 @@ class Game {
 	 */
 	private String getWordlistPath() {
 		File file = new File(Game.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		String wordlistPath = file.getParentFile().getParentFile().getParentFile().getParent() + "/wordlist.txt";
+		String wordlistPath = file.getParentFile().getParent() + "/resources/main/wordlist.txt";
 
 		return wordlistPath;
 	}
@@ -208,9 +203,9 @@ class Game {
 			if (!g.guessed) {
 				count++;
 				System.out.printf(
-					"%s)%s\n",
-					this.leftPad(String.valueOf(count), 2),
-					this.leftPad(g.text, this.wordLength + 2)
+						"%s)%s\n",
+						this.leftPad(String.valueOf(count), 2),
+						this.leftPad(g.text, this.wordLength + 2)
 				);
 			} else {
 				System.out.printf("%s (%s)\n", this.leftPad(g.text, this.wordLength + 5), g.commonChars);
