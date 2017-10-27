@@ -1,5 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,6 +50,11 @@ public class Game {
 	private int wordListLength;
 
 	/**
+	 * The URL of the word list
+	 */
+	private URL wordListUrl;
+
+	/**
 	 * The solution to the game
 	 */
 	String solution;
@@ -60,11 +65,12 @@ public class Game {
 	 */
 	Game(GameParams gameParams) {
 		this.randomGenerator = new Random();
+		this.wordListUrl = gameParams.getWordListUrl();
 		this.wordLength = gameParams.getWordLength();
 		this.wordListLength = gameParams.getWordListLength();
-		this.solved = false;
 		this.remainingGuesses = gameParams.getAllowedGuesses();
 		this.initialGuesses = this.remainingGuesses;
+		this.solved = false;
 		this.isLucky = false;
 		this.hasBeenReset = false;
 		this.setup();
@@ -153,26 +159,15 @@ public class Game {
 	}
 
 	/**
-	 * @return String The absolute path to the wordlist text file
-	 */
-	private String getWordlistPath() {
-		File file = new File(Game.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-		String wordlistPath = file.getParentFile().getParent() + "/resources/main/wordlist.txt";
-
-		return wordlistPath;
-	}
-
-	/**
 	 * Gets the possible options (i.e. words which are of the proper word length)
 	 * @return ArrayList<String> The array list
 	 */
 	private ArrayList<String> getPossibleOptions() {
 		ArrayList<String> list = new ArrayList<>();
-		String wordlistPath = this.getWordlistPath();
 		Scanner s = null;
 		try {
-			s = new Scanner(new File(wordlistPath));
-		} catch (FileNotFoundException e) {
+			s = new Scanner(wordListUrl.openStream());
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		assert s != null;

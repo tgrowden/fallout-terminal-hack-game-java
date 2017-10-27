@@ -1,3 +1,4 @@
+import java.net.URL;
 import java.util.Scanner;
 
 public class Main {
@@ -78,8 +79,15 @@ public class Main {
 				wordListLength = 0;
 		}
 
-		GameParams res = new GameParams(wordLength, wordListLength);
+		GameParams res = new GameParams(getWordListUrl(), wordLength, wordListLength);
 
 		return res;
+	}
+
+	/**
+	 * @return URL The URL to the wordlist text file
+	 */
+	private static URL getWordListUrl() {
+		return Main.class.getResource("wordlist.txt");
 	}
 }
