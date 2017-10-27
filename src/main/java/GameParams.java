@@ -1,4 +1,10 @@
+import java.net.URL;
+
 public class GameParams {
+	/**
+	 * The URL of the word list
+	 */
+	private URL wordListUrl;
 	/**
 	 * The word length
 	 */
@@ -17,8 +23,8 @@ public class GameParams {
 	 * @param wordLength
 	 * @param wordListLength
 	 */
-	GameParams(int wordLength, int wordListLength) {
-		this(wordLength, wordListLength, 4);
+	GameParams(URL wordListUrl, int wordLength, int wordListLength) {
+		this(wordListUrl, wordLength, wordListLength, 4);
 	}
 
 	/**
@@ -27,10 +33,19 @@ public class GameParams {
 	 * @param wordListLength
 	 * @param allowedGuesses
 	 */
-	GameParams(int wordLength, int wordListLength, int allowedGuesses) {
+	GameParams(URL wordListUrl, int wordLength, int wordListLength, int allowedGuesses) {
+		this.wordListUrl = wordListUrl;
 		this.wordLength = wordLength;
 		this.wordListLength = wordListLength;
 		this.allowedGuesses = allowedGuesses;
+	}
+
+	/**
+	 * wordListUrl getter
+	 * @return wordListUrl
+	 */
+	public URL getWordListUrl() {
+		return wordListUrl;
 	}
 
 	/**
