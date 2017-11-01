@@ -4,19 +4,19 @@ public class GameParams {
 	/**
 	 * The URL of the word list
 	 */
-	private URL wordListUrl;
+	private final URL wordListUrl;
 	/**
 	 * The word length
 	 */
-	private int wordLength;
+	private final int wordLength;
 	/**
 	 * The word list length
 	 */
-	private int wordListLength;
+	private final int wordListLength;
 	/**
 	 * The allowed guesses
 	 */
-	private int allowedGuesses;
+	private final int allowedGuesses;
 
 	/**
 	 * Overloaded constructor with default `allowedGuesses`
