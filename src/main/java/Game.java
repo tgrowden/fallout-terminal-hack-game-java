@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
@@ -86,7 +85,7 @@ public class Game {
 		ArrayList<Guess> res = new ArrayList<>();
 		do {
 			String word = this.getRandomOption(possibleOptions);
-			int commonality = this.findCommonCharacters(this.solution, word.toUpperCase());
+			int commonality = StringUtils.findCommonCharacters(this.solution, word.toUpperCase());
 			res.add(new Guess(word, commonality));
 		} while (
 				res.size() < this.wordListLength
@@ -115,47 +114,6 @@ public class Game {
 		String item = possibleOptions.get(index);
 
 		return item;
-	}
-
-	/**
-	 * Determines the number of common characters between two strings
-	 * @param s1 The first string
-	 * @param s2 The second string
-	 * @return int The number of common characters between `s1` and `s2`
-	 */
-	private int findCommonCharacters(String s1, String s2) {
-		int count = 0;
-		for(int i = 0; i < s1.length() && i < s2.length(); i++) {
-			if(s1.charAt(i) == s2.charAt(i)){
-				count++;
-			}
-		}
-
-		return count;
-	}
-
-	/**
-	 * Left-pads a string with `padding` padding using char `padder`
-	 * @param text The text to pad
-	 * @param padding The number of characters to pad the string
-	 * @param padder The character used for padding
-	 * @return String The left-padded string
-	 */
-	public String leftPad(String text, int padding, char padder) {
-		char[] chars = new char[padding];
-		Arrays.fill(chars, padder);
-		String padded = new String(chars);
-		return padded.substring(text.length()) + text;
-	}
-
-	/**
-	 * leftPad() with default padder of ' '
-	 * @param text
-	 * @param padding
-	 * @return String The padded string
-	 */
-	public String leftPad(String text, int padding) {
-		return this.leftPad(text, padding, ' ');
 	}
 
 	/**
@@ -199,11 +157,11 @@ public class Game {
 				count++;
 				System.out.printf(
 						"%s)%s\n",
-						this.leftPad(String.valueOf(count), 2),
-						this.leftPad(g.text, this.wordLength + 2)
+						StringUtils.leftPad(String.valueOf(count), 2),
+						StringUtils.leftPad(g.text, this.wordLength + 2)
 				);
 			} else {
-				System.out.printf("%s (%s)\n", this.leftPad(g.text, this.wordLength + 5), g.commonChars);
+				System.out.printf("%s (%s)\n", StringUtils.leftPad(g.text, this.wordLength + 5), g.commonChars);
 			}
 		}
 		System.out.println(" r)  reset");
